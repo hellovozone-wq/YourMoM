@@ -1,0 +1,5 @@
+{
+  "name": "YourMoM",
+  "description": "Smart meeting recorder that transcribes and summarizes audio using Gemini AI.",
+  "requestFramePermissions": ["microphone"]
+}
