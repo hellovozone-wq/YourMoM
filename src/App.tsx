@@ -15,7 +15,8 @@ import {
   FileAudio,
   Download,
   Copy,
-  Check
+  Check,
+  Languages
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { useAudioRecorder } from '@/hooks/useAudioRecorder';
@@ -43,6 +44,7 @@ export default function App() {
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [language, setLanguage] = useState<'en' | 'id'>('en');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const activeBlob = uploadedFile || recordedBlob;
@@ -53,7 +55,7 @@ export default function App() {
     setIsProcessing(true);
     setError(null);
     try {
-      const response = await processMeetingAudio(activeBlob);
+      const response = await processMeetingAudio(activeBlob, language);
       setResult(response);
     } catch (err) {
       console.error(err);
@@ -125,10 +127,32 @@ export default function App() {
           <div className="lg:col-span-5">
             <Card className="bg-[#151619] border-none shadow-2xl overflow-hidden rounded-2xl">
               <CardHeader className="border-b border-white/10 pb-4">
-                <CardTitle className="text-white flex items-center gap-2 text-sm font-mono tracking-widest uppercase">
-                  <Volume2 className="w-4 h-4 text-[#FF4444]" />
-                  Audio Input
-                </CardTitle>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-white flex items-center gap-2 text-sm font-mono tracking-widest uppercase">
+                    <Volume2 className="w-4 h-4 text-[#FF4444]" />
+                    Audio Input
+                  </CardTitle>
+                  <div className="flex bg-white/5 rounded-lg p-1">
+                    <button 
+                      onClick={() => setLanguage('en')}
+                      className={cn(
+                        "px-2 py-1 text-[10px] font-mono rounded-md transition-all",
+                        language === 'en' ? "bg-white text-[#151619]" : "text-[#8E9299] hover:text-white"
+                      )}
+                    >
+                      EN
+                    </button>
+                    <button 
+                      onClick={() => setLanguage('id')}
+                      className={cn(
+                        "px-2 py-1 text-[10px] font-mono rounded-md transition-all",
+                        language === 'id' ? "bg-white text-[#151619]" : "text-[#8E9299] hover:text-white"
+                      )}
+                    >
+                      ID
+                    </button>
+                  </div>
+                </div>
               </CardHeader>
               <CardContent className="p-8 flex flex-col items-center justify-center space-y-8">
                 {/* Visualizer Placeholder / Timer */}
