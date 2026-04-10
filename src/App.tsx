@@ -18,15 +18,15 @@ import {
   Check
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
-import { useAudioRecorder } from './hooks/useAudioRecorder';
-import { processMeetingAudio } from './services/gemini';
-import { Button } from './components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './components/ui/card';
-import { ScrollArea } from './components/ui/scroll-area';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs';
-import { Badge } from './components/ui/badge';
-import { Separator } from './components/ui/separator';
-import { cn } from './lib/utils';
+import { useAudioRecorder } from '@/hooks/useAudioRecorder';
+import { processMeetingAudio } from '@/services/gemini';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
+import { cn } from '@/lib/utils';
 
 export default function App() {
   const { 
